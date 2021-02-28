@@ -20,6 +20,8 @@ public interface GoodService {
 
     void delMulGood(List<good> goods) throws IOException;
 
+    GoodResult updGood(int goodid,String goodname,int newhot) throws IOException;
+
     GoodPushResult getGoodPush(good good) throws IOException;
 
     GoodPicResult getGoodPic(int pageIndex,int pageSize) throws IOException;

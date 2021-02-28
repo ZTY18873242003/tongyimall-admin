@@ -42,8 +42,22 @@ export default new Router({
                 {
                     path: '/goodpic',
                     component: () => import(/* webpackChunkName: "table" */ '../components/page/GoodPic.vue'),
-                    meta: { title: '商品图片管理' }
+                    meta: { title: '商品图片' }
                 },
+
+
+                {
+                    path: '/suggest',
+                    component: () => import(/* webpackChunkName: "table" */ '../components/page/Suggest.vue'),
+                    meta: { title: '底部推荐栏' }
+                },
+                {
+                    path: '/suggestbig',
+                    component: () => import(/* webpackChunkName: "table" */ '../components/page/SuggestBig.vue'),
+                    meta: { title: '大类推荐栏' }
+                },
+
+
                 {
                     path: '/table',
                     component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),

@@ -63,7 +63,7 @@ export default {
                 },
                 {
                     icon: 'el-icon-lx-people',
-                    index: '3',
+                    index: '1',
                     title: '用户管理',
                     subs: [
                         {
@@ -82,13 +82,14 @@ export default {
                 },
                 {
                     icon: 'el-icon-lx-goods',
-                    index: '4',
+                    index: '2',
                     title: '商品管理',
                     subs: [
                         {
                             index: 'goodUpd',
                             title: '商品上下架',
                         },
+
                         {
                             index: 'goodCato',
                             title: '商品分类',
@@ -96,6 +97,22 @@ export default {
                         {
                             index: 'goodpic',
                             title: '商品图片',
+                        }
+                    ]
+                },
+
+                {
+                    icon: 'el-icon-lx-goods',
+                    index: '3',
+                    title: '推荐管理',
+                    subs: [
+                        {
+                            index: 'suggest',
+                            title: '底部推荐栏',
+                        },
+                        {
+                            index: 'suggestbig',
+                            title: '大类推荐栏',
                         }
                     ]
                 },
@@ -112,7 +129,7 @@ export default {
                 },
                 {
                     icon: 'el-icon-lx-calendar',
-                    index: 5,
+                    index: '5',
                     title: '表单相关',
                     subs: [
                         {

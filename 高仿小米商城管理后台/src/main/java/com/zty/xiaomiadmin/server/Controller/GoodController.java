@@ -36,9 +36,15 @@ public class GoodController {
     }
     @RequestMapping("/getGoodByName")
     private GoodResult getGoodByName(@RequestParam("name") String goodname) throws IOException {
-        System.out.println(goodname);
-//        int categor = Integer.parseInt(category);
         GoodResult goodResult = goodServiceImp.getGoodByName(goodname);
+        return goodResult;
+    }
+
+    @RequestMapping("/updGood")
+    private GoodResult getGoodByName(@RequestParam("good_id") int goodid,
+                                     @RequestParam("name") String goodname,
+                                     @RequestParam("newhot") int newhot) throws IOException {
+        GoodResult goodResult = goodServiceImp.updGood(goodid,goodname,newhot);
         return goodResult;
     }
 

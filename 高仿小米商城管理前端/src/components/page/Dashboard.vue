@@ -11,19 +11,19 @@
                         </div>
                     </div>
                     <div class="user-info-list">
-                        上次登录IP：
+                        登录IP：
                         <span>{{ip}}</span>
                     </div>
                     <div class="user-info-list">
-                        上次登录地点：
+                        登录地点：
                         <span>{{area}}</span>
                     </div>
                     <div class="user-info-list">
-                    上次登录浏览器：
+                        登录浏览器：
                     <span>{{brower}}</span>
                     </div>
                     <div class="user-info-list">
-                    上次登录操作系统：
+                        登录操作系统：
                     <span>{{os}}</span>
                   </div>
 

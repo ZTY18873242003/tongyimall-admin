@@ -16,18 +16,8 @@
                 ref="multipleTable"
                 header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange">
-                <el-table-column prop="categoryId" label="分类ID" width="85" align="center"></el-table-column>
-                <el-table-column prop="name" label="分类名" width="125"></el-table-column>
-
-                <el-table-column label="头像(查看大图)" align="center">
-                    <template slot-scope="scope">
-                        <el-image
-                            class="table-td-thumb"
-                            :src="scope.row.thumb"
-                            :preview-src-list="[scope.row.thumb]"
-                        ></el-image>
-                    </template>
-                </el-table-column>
+                <el-table-column prop="categoryId" label="分类ID" width="185" align="center"></el-table-column>
+                <el-table-column prop="name" label="分类名" width="325"></el-table-column>
 
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
@@ -67,15 +57,14 @@
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
-import { getGoodCate, updateGoodCate } from '../../api';
+    import { getGoodCate, updateGoodCate } from '../../api';
 export default {
-    name: 'basetable',
+    name: 'GoodCategory',
     data() {
         return {
             query: {
                 pageIndex: 1,
-                pageSize: 8
+                pageSize: 5
             },
             tableData: [],
             multipleSelection: [],

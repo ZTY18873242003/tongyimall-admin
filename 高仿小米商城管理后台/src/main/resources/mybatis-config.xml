@@ -21,5 +21,6 @@
         <mapper class="com.zty.xiaomiadmin.server.Dao.Login"/>
         <mapper class="com.zty.xiaomiadmin.server.Dao.User"/>
         <mapper class="com.zty.xiaomiadmin.server.Dao.Good"/>
+        <mapper class="com.zty.xiaomiadmin.server.Dao.Suggest"/>
     </mappers>
 </configuration>

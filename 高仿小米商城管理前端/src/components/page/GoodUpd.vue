@@ -16,7 +16,7 @@
                     @click="delAllSelection"
                 >批量删除</el-button>
               <el-input v-model="query.name" placeholder="商品名" class="handle-input mr10"></el-input>
-              <el-input v-model="query.category" placeholder="分类ID" class="handle-input mr10"></el-input>
+              <el-input v-model="query.category" placeholder="分类ID" maxlength=1 class="handle-input mr10"></el-input>
               <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
               <el-button type="primary" icon="el-icon-lx-add" @click="newShop">上架商品</el-button>
             </div>
@@ -29,10 +29,10 @@
                 @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="75" align="center"></el-table-column>
                 <el-table-column prop="good_id" label="商品ID" width="75" align="center"></el-table-column>
-                <el-table-column prop="name" label="商品名"></el-table-column>
-                <el-table-column prop="category_id" label="所属分类ID"></el-table-column>
-
-                <el-table-column prop="date" label="上下架更新时间"></el-table-column>
+                <el-table-column prop="name" label="商品名" align="center"></el-table-column>
+                <el-table-column prop="category_id" label="所属分类ID" width="110" align="center"></el-table-column>
+                <el-table-column prop="newhot" label="热门新品(1热门,0不热门)" width="200" align="center"></el-table-column>
+              <el-table-column prop="pushtime" label="上架时间" align="center"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -58,12 +58,17 @@
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
             <el-form ref="form" :model="form" label-width="70px">
-                <el-form-item label="用户名">
+                <el-form-item label="商品名">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
-                <el-form-item label="地址">
-                    <el-input v-model="form.address"></el-input>
-                </el-form-item>
+
+              <el-form-item label="是否热门" :label-width="formLabelWidth">
+                <el-select v-model="form.newhot" placeholder="状态">
+                  <el-option label="是" value="1"></el-option>
+                  <el-option label="否" value="0"></el-option>
+                </el-select>
+              </el-form-item>
+
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible = false">取 消</el-button>
@@ -78,22 +83,22 @@
             <el-input v-model="newform.name"></el-input>
           </el-form-item>
           <el-form-item label="所属分类ID">
-            <el-input v-model="newform.category_id"></el-input>
+            <el-input v-model="newform.category_id" maxlength=1></el-input>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible2 = false">取 消</el-button>
                 <el-button type="primary" @click="saveEdit2">确 定</el-button>
-            </span>
+        </span>
       </el-dialog>
     </div>
 </template>
 
 <script>
-    import { fetchData, getGoodByName, pushGood } from '../../api/index';
-    import { delGood, delMulGood, getGood, getGoodByCategory } from '../../api';
+    import { fetchData, getGoodByName, pushGood, updGood } from '../../api/index';
+    import { delGood, delMulGood, getGood, getGoodByCategory, updSuggFoot } from '../../api';
 export default {
-    name: 'basetable',
+    name: 'GoodUpd',
     data() {
         return {
             query: {
@@ -102,6 +107,7 @@ export default {
                 pageIndex: 1,
                 pageSize: 24
             },
+            formLabelWidth: '120px',
             tableData: [],
             multipleSelection: [],
             delList: [],
@@ -191,22 +197,34 @@ export default {
         },
         // 保存编辑
         saveEdit() {
-            this.editVisible = false;
-            this.$message.success(`修改第 ${this.idx + 1} 行成功`);
-            this.$set(this.tableData, this.idx, this.form);
+
+            updGood(this.tableData[this.idx]).then(res=>{
+                if(res.status===200){
+                    this.editVisible = false;
+                    this.$message.success(`修改第 ${this.idx + 1} 行成功`);
+                    this.$set(this.tableData, this.idx, this.form);
+                }
+                else {
+                    this.$message.error(`商品名不能为空！`)
+                }
+            })
+
         },
         saveEdit2() {
             this.editVisible2 = false;
-            pushGood(this.newform).then(res=>{
-                if(res.status === 200){
-                    this.$message.success(`上架成功`);
-                }
-                else {
-                    this.$message.error(`商品已存在`)
-                }
-            });
-
-
+            if(this.newform.name && this.newform.category_id) {
+                pushGood(this.newform).then(res => {
+                    if (res.status === 200) {
+                        this.newform.name=this.newform.category_id='';
+                        this.$message.success(`上架成功`);
+                    } else {
+                        this.$message.error(`商品已存在`)
+                    }
+                });
+            }
+            else {
+                this.$message.error("上架失败,信息没有填写完整!")
+            }
         },
         // 分页导航
         handlePageChange(val) {

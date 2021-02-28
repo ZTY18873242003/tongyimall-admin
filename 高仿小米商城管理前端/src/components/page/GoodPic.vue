@@ -10,8 +10,8 @@
         <div class="container">
             <div class="handle-box">
               <el-input v-model="query.name" placeholder="商品名" class="handle-input mr10"></el-input>
-              <el-input v-model="query.category" placeholder="分类ID" class="handle-input mr10"></el-input>
-              <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+              <el-input v-model="query.category" placeholder="分类ID" maxlength=1 class="handle-input mr10"></el-input>
+              <el-button type="primary" icon="el-icon-search"  @click="handleSearch">搜索</el-button>
             </div>
             <el-table
                 :data="tableData"
@@ -21,7 +21,7 @@
                 header-cell-class-name="table-header"
                 >
                 <el-table-column prop="good_id" label="商品ID" width="65" align="center"></el-table-column>
-                <el-table-column prop="name" label="商品名" width="150"></el-table-column>
+                <el-table-column prop="name" label="商品名" width="150" align="center"></el-table-column>
 
                 <el-table-column label="首页分类图标(40*40)" align="center">
                     <template slot-scope="scope">
@@ -142,7 +142,7 @@
     import { fetchData, getGoodByCategory, getGoodByName } from '../../api/index';
     import { getGoodPic, getGoodPicByCategory, getGoodPicByName, updGoodPic } from '../../api';
 export default {
-    name: 'basetable',
+    name: 'GoodPic',
     data() {
         return {
             query: {

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -62,14 +64,12 @@ public class GoodServiceImp implements GoodService {
         GoodResult goodResult = new GoodResult();
         goodResult.setStatus(200);
         SqlSession sqlSession = getSqlSession();
-        good goodByName = sqlSession.getMapper(Good.class).getGoodByName(goodname);
-        int num = 1;
+        List<good> goodByName = sqlSession.getMapper(Good.class).getGoodsByName("%"+ goodname + "%");
+        int num = goodByName.size();
         int allnum = sqlSession.getMapper(Good.class).getGoodPicCount();
         goodResult.setPageTotal(allnum);
         goodResult.setCurrTotal(num);
-        ArrayList<good> good = new ArrayList<>(1);
-        good.add(goodByName);
-        goodResult.setList(good);
+        goodResult.setList(goodByName);
         return goodResult;
     }
     @Override
@@ -129,6 +129,7 @@ public class GoodServiceImp implements GoodService {
             goodPushResult.setStatus(400);
         }
         else{
+
             goodPushResult.setStatus(200);
             List<good> goods = sqlSession.getMapper(Good.class).getGood(good.getCategory_id());
             int finaid = goods.get(goods.size()-1).getGood_id();
@@ -139,7 +140,8 @@ public class GoodServiceImp implements GoodService {
                 sqlSession.getMapper(Good.class).updateGoodID(i,i+1);
                 sqlSession.commit();
             }
-            sqlSession.getMapper(Good.class).insertGood(starid,good.getName(),good.getCategory_id());
+            String createTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            sqlSession.getMapper(Good.class).insertGood(starid,good.getName(),createTime,good.getCategory_id());
             sqlSession.commit();
 
             good newgoodbyname = sqlSession.getMapper(Good.class).getGoodByName(good.getName());
@@ -147,6 +149,25 @@ public class GoodServiceImp implements GoodService {
             sqlSession.close();
         }
         return goodPushResult;
+    }
+
+    @Override
+    public GoodResult updGood(int goodid,String goodname,int newhot) throws IOException {
+        GoodResult goodResult = new GoodResult();
+        SqlSession sqlSession = getSqlSession();
+        if(goodname.equals("")){
+            goodResult.setStatus(404);
+        }
+        else {
+            System.out.println(goodid);
+            System.out.println(goodname);
+            System.out.println(newhot);
+            sqlSession.getMapper(Good.class).updGood(goodid, goodname, newhot);
+            sqlSession.commit();
+            sqlSession.close();
+            goodResult.setStatus(200);
+        }
+        return goodResult;
     }
 
     @Override
@@ -170,14 +191,12 @@ public class GoodServiceImp implements GoodService {
         GoodPicResult goodPicResult = new GoodPicResult();
         goodPicResult.setStatus(200);
         SqlSession sqlSession = getSqlSession();
-        GoodPic goodPicByName = sqlSession.getMapper(Good.class).getGoodPicByName(goodname);
-        int num = 1;
+        List<GoodPic> goodPicByName = sqlSession.getMapper(Good.class).getGoodPicByName('%'+goodname+'%');
+        int num = goodPicByName.size();
         int allnum = sqlSession.getMapper(Good.class).getGoodPicCount();
         goodPicResult.setPageTotal(allnum);
         goodPicResult.setCurrTotal(num);
-        ArrayList<GoodPic> good = new ArrayList<>(1);
-        good.add(goodPicByName);
-        goodPicResult.setList(good);
+        goodPicResult.setList(goodPicByName);
         return goodPicResult;
     }
 
