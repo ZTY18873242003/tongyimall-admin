@@ -48,6 +48,6 @@ cd /高仿小米商城后端    //进入到后端目录
 ```
 
 ## 四、完整项目地址
-&nbsp;&nbsp;&nbsp;&nbsp;项目目前分为商城端（tongyimall-vue）和管理端(tongyimall-admin)两个部分，我分开放到两个仓库中了。
+&nbsp;&nbsp;&nbsp;&nbsp;项目目前分为商城端（tongyimall-vue）和管理端(tongyimall-admin)两个部分，我分开放到两个仓库中了。<br>
 &nbsp;&nbsp;&nbsp;&nbsp;商城端：[tongyimall](https://github.com/ZTY18873242003/tongyimall) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;管理端：[tongyimall-admin](https://github.com/ZTY18873242003/tongyimall-admin)
