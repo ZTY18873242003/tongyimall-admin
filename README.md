@@ -40,7 +40,7 @@ npm run build        // 执行构建命令，生成的dist文件夹放在服务�
 ```
 使用root用户权限在本地新建名为xiaomi的mysql数据库，登录密码为:2000918131X,可在 /高仿小米商城管理后台/src/main/resources/JDBC.properties文件中修改密码
 
-cd /高仿小米商城后端    //进入到后端目录
+cd /高仿小米商城后台   //进入到后端目录
 
 使用数据库管理工具(如Navicat)运行xiaomi.sql脚本文件(用户端也是这个数据库),或复制其中内容在命令行执行
 
