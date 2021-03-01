@@ -26,7 +26,7 @@
 ```
 git clone https://github.com/ZTY18873242003/tongyimall-admin      //下载到本地
 
-cd /高仿小米商城前端    //进入到前端目录
+cd /高仿小米商城管理前端    //进入到前端目录
 
 npm install          // 安装项目依赖(需要电脑上装有Node环境)，等待安装完成之后，安装失败可用 cnpm 或 yarn
 
@@ -36,9 +36,9 @@ npm run serve        // 开启服务器，浏览器访问 http://localhost:8080
 
 npm run build        // 执行构建命令，生成的dist文件夹放在服务器下即可访问
 ```
-##### 1、后端部分
+##### 2、后端部分
 ```
-使用root用户权限在本地新建名为xiaomi的mysql数据库，登录密码为:2000918131X,可在 高仿小米商城管理后台/src/main/resources/JDBC.properties文件中修改密码
+使用root用户权限在本地新建名为xiaomi的mysql数据库，登录密码为:2000918131X,可在 /高仿小米商城管理后台/src/main/resources/JDBC.properties文件中修改密码
 
 cd /高仿小米商城后端    //进入到后端目录
 
@@ -48,6 +48,6 @@ cd /高仿小米商城后端    //进入到后端目录
 ```
 
 ## 四、完整项目地址
-&nbsp;&nbsp;&nbsp;&nbsp;项目目前分为商城端（tongyimall-vue）和管理端(tongyimall-admin)两个部分，我分开放到两个仓库中了。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;项目目前分为商城端（tongyimall）和管理端(tongyimall-admin)两个部分，我分开放到两个仓库中了。<br>
 &nbsp;&nbsp;&nbsp;&nbsp;商城端：[tongyimall](https://github.com/ZTY18873242003/tongyimall) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;管理端：[tongyimall-admin](https://github.com/ZTY18873242003/tongyimall-admin)
