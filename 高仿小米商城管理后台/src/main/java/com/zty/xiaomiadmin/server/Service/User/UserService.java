@@ -6,6 +6,5 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 
 public interface UserService {
-    SqlSession getSqlSession() throws IOException;
     UserResult getUsers() throws IOException;
 }

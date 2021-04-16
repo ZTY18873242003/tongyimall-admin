@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface SuggService {
-    SqlSession getSqlSession() throws IOException;
 
     List<SuggestFoot> getSugFoot() throws IOException;
 

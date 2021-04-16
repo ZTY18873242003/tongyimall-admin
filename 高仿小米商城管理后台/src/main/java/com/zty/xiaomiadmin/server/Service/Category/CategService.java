@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 
 public interface CategService{
-    SqlSession getSqlSession() throws IOException;
     CateResult getCategory(int pageIndex,int pageSize) throws IOException;
     void updCategory(String name,int categoryId) throws IOException;
 }

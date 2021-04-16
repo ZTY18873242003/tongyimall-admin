@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface GoodService {
-    SqlSession getSqlSession() throws IOException;
 
     GoodResult getGood(int pageIndex, int pageSize,String goodname) throws IOException;
 
