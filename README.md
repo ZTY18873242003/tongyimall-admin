@@ -1,7 +1,7 @@
 # tongyimall-admin
 高仿小米商城管理端(分为管理前端（tongyimall-admin-vue)和管理后端(tongyimall-admin-api)两部分)，是Vue + SpringBoot的前后端分离项目，基于 vue.js，使用 vue-cli3 脚手架，引用 Element UI 组件库。
 
-### 一、功能(在线地址:www.tongyi.site/admin)
+### 一、功能(在线地址:www.tongyi.site/admin,用户名:admin,密码:2000918131X)
 
 -   登录(采用RSA加密算法)
 -   商品上下架
